@@ -1,0 +1,8 @@
+Coloque na fila de prioridades Q todos os vertices com o grau de entrada igual a zero
+Enquanto Q nao estiver vazia 
+	Vertice U = Q.front()
+	Q.pop()
+	Coloque U na lista da ordenacao topologica
+	Remova todas as arestas de saídas do vertice U
+		Se os vertices V que tinham as arestas de U como entrada ficarem com o Grau de Entrada igual a zero
+			Q.push(V)

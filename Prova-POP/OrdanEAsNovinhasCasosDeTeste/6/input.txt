@@ -1,0 +1,6 @@
+5 12
+bbbbbnnnnnnn
+bnnnbnnnnnnb
+bn*nbnnnnnn*
+bnnnbnnnnnnb
+bbbbbnnnnnnb

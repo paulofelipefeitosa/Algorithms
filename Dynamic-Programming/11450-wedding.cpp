@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	bool reach[25][210] = {};
+	int tam_g[25], price[25][25];
+	int t;
+	scanf("%d", &t);
+	while(t--)
+	{
+		int m, c;
+		scanf("%d %d", &m, &c);
+		for(int i = 0;i < c;i++)
+		{
+			scanf("%d", &tam_g[i]);
+			for(int j = 0;j < tam_g[i];j++)
+				scanf("%d", &price[i][j]);
+		}
+		
+		for(int j = 0;j < tam_g[0];j++)//caso base
+			if(m - price[0][j] >= 0)
+				reach[0][m - price[0][j]] = true;
+		
+		for(int g = 1;g < c;g++)//construo a transição dos casos
+			for(int money = 0;money < m;money++)//se eu consigo chegar na garment g com money
+				if(reach[g-1][money] == true)
+					for(int k = 0;k < tam_g[g];k++)
+						if(money - price[g][k] >= 0)//faço a transição para os proximos casos
+							reach[g][money - price[g][k]] = true;
+		
+		int money;
+		for(money = 0;money <= m && reach[c-1][money] == false;money++);
+		
+		if(money == (m+1))
+			puts("no solution");
+		else
+			printf("%d\n", m-money);
+		
+		for(int i = 0;i < c;i++)
+			for(int j = 0;j <= m;j++)
+				reach[i][j] = false;
+	}
+	return 0;
+}
